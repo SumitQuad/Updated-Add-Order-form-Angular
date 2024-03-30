@@ -1,0 +1,30 @@
+/* Signature pad container */
+/* .signature-pad-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+   */
+  /* Signature pad canvas */
+  .signature-pad-canvas {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width : 100px;
+    height:100px;
+  }
+  
+  /* Clear button */
+  .clear-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .clear-button:hover {
+    background-color: #f0f0f0;
+  }
+  
