@@ -53,8 +53,8 @@
                 <table class="table table-bordered text-black">
                     <tr>
                         <th class="bg-light-secondary text-center text-black">&nbsp;</th>
-                        <th class="bg-light-secondary text-center text-black">{{ item.placeholders[0] }}</th>
-                        <th class="bg-light-secondary text-center text-black">{{ item.placeholders[1] }}</th>
+                        <th class="bg-light-secondary text-center text-black" *ngFor="let placeholder of item.placeholders">{{ placeholder }}</th>
+                     
                     </tr>
                     <tr>
                         <th class="bg-light-secondary text-center text-black">2</th>
@@ -76,6 +76,55 @@
             <span class="btn btn-light-danger lh-1 px-2 ms-2" (click)="deleteField(i)"><i class="ti ti-trash"></i></span>
         </div>
     <!-- end form-spreadsheet-input-field -->
+
+       <!-- Start form-signature-field -->
+       <li class="mb-3 form-signature-field">
+        <div class="d-flex align-items-start" *ngIf="item.originalValue === 'Signature'">
+            <span class="btn bg-light-dark lh-1 px-2 me-2"><i class="ti ti-grip-vertical"></i></span>
+            <div class="w-100 px-1">
+                <div class="mb-3">
+                    <label for="first-last-name" class="form-label w-100">Client Agreement </label>
+                    <textarea name="" id="" cols="30" rows="10" class="form-control">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in augue lacus. Cras nec neque quis turpis gravida rhoncus suscipit sit amet leo. Maecenas ultricies dolor vulputate massa mattis venenatis. Proin vitae dui vel justo rutrum elementum eu quis neque. Aenean vitae laoreet metus. Vestibulum faucibus vestibulum cursus. Praesent molestie lobortis purus, fermentum iaculis diam efficitur at. Nulla id magna nec odio rutrum convallis. Suspendisse efficitur laoreet condimentum. Duis rutrum cursus lectus a fringilla. Sed hendrerit malesuada felis, suscipit pellentesque nulla tristique ut. Fusce ut ultricies libero. Proin tempus malesuada dolor, ac luctus lectus pulvinar ut.
+                </textarea>
+                </div>
+                <div>
+                    <label for="" class="form-label w-100 rounded-3">Please e-sign this agreement</label>
+                    <canvas height="75" width="350" class="form-control" style="max-width: 300px;"></canvas>
+                </div>
+            </div>
+            <span class="btn btn-light-danger lh-1 px-2 ms-2" (click)="deleteField(i)"><i class="ti ti-trash"></i></span>
+        </div>
+    </li>
+    <!-- end form-signature-field -->
+
+        <!--Service Selection Starts Here-->
+        <li class="mb-3 form-service-dropdown">
+          <div class="d-flex align-items-start" *ngIf="item.originalValue === 'Service dropdown'">
+            <span class="btn bg-light-dark lh-1 px-2 me-2"><i class="ti ti-grip-vertical"></i></span>
+            <div class="w-100 px-1">
+              <label for="" class="form-label w-100">Service dropdown <small>Optional</small></label>
+              <div ngbDropdown class="d-block">
+                <button
+                  type="button"
+                  class="btn border border-dark border-opacity-50 bg-white d-flex align-items-center justify-content-between gap-1 w-100"
+                  id="dropdownBasic1"
+                  ngbDropdownToggle
+                >
+                  <span>Please select</span> <i class="ti ti-chevron-down"></i>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="w-100">
+                  <button type="button" class="btn mb-0 text-start w-100 border-bottom">
+                    <span>Website Audit</span>
+                  </button>
+                </div>
+              </div>
+              <!-- DROPDOWN SELECT END -->
+            </div>
+          </div>
+        </li>
+        <!--Service Selection Closes Here-->
+
+
 </div>
 
 <!-- Newly added fields -->
@@ -109,7 +158,7 @@
               <span class="btn bg-light-dark lh-1 px-2 me-2"><i class="ti ti-grip-vertical"></i></span>
               <div class="w-100 px-1">
                 <label for="email" class="form-label w-100">Email</label>
-                <input type="email" id="email" class="form-control" [placeholder]="addFieldsArr[editingIndex]?.placeholders" (keyup)="getInputValue(editingIndex,null, $event.target.value)" />
+                <input type="email" id="email" class="form-control" [placeholder]="addFieldsArr[editingIndex]?.placeholder" (keyup)="getInputValue(editingIndex,null, $event.target.value)" />
               </div>
             </div>
         </div>
@@ -118,7 +167,7 @@
             <span class="btn bg-light-dark lh-1 px-2 me-2"><i class="ti ti-grip-vertical"></i></span>
             <div class="w-100 px-1">
               <label for="email" class="form-label w-100">Phone</label>
-              <input type="email" id="email" class="form-control" [placeholder]="addFieldsArr[editingIndex]?.placeholders" (keyup)="getInputValue(editingIndex,null, $event.target.value)" />
+              <input type="email" id="email" class="form-control" [placeholder]="addFieldsArr[editingIndex]?.placeholder" (keyup)="getInputValue(editingIndex,null, $event.target.value)" />
             </div>
           </div>
       </div>
@@ -134,12 +183,12 @@
         <div>
           <div class="form-group d-flex gap-2 mb-2">
             <button type="button" class="btn bg-white lh-1 px-2"><i class="ti ti-grip-vertical"></i></button>
-            <input type="text" value="Link" class="form-control"  [placeholder]="addFieldsArr[editingIndex]?.placeholders[0]"  (keyup)="getInputValue(editingIndex,0, $event.target.value)"/>
+            <input type="text"  class="form-control"  [placeholder]="addFieldsArr[editingIndex]?.placeholders[0]"  (keyup)="getInputValue(editingIndex,0, $event.target.value)"/>
             <button type="button" class="btn btn-light-danger lh-1 px-2"><i class="ti ti-trash"></i></button>
           </div>
           <div class="form-group d-flex gap-2 mb-2">
             <button type="button" class="btn bg-white lh-1 px-2"><i class="ti ti-grip-vertical"></i></button>
-            <input type="text" value="Anchor text" class="form-control" [placeholder]="addFieldsArr[editingIndex]?.placeholders[0]"  (keyup)="getInputValue(editingIndex,1, $event.target.value)"/>
+            <input type="text"  class="form-control" [placeholder]="addFieldsArr[editingIndex]?.placeholders[1]"  (keyup)="getInputValue(editingIndex,1, $event.target.value)"/>
             <button type="button" class="btn btn-light-danger lh-1 px-2"><i class="ti ti-trash"></i></button>
           </div>
           <div class="form-group d-flex gap-2 mb-2">

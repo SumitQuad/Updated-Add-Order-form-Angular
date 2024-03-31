@@ -95,7 +95,43 @@ export class AppComponent {
       originalValue: 'Spreadsheet Input',
       isNew: true,
       placeholders: ['Link', 'Anchor text'],
-    },      
+    },   
+    {
+      label: 'Signature',
+      field: 'signature',
+      iconClass: 'ti ti-signature',
+      type: 'text',
+      placeholder: 'Please e-sign this agreement.',
+      helptext: '',
+      isEdit: false,
+      important: '',
+      iTagClass: 'ti ti-cursor-text',
+      originalValue: 'Signature',
+      isNew: true
+    },
+    {
+      label: 'Service dropdown',
+      field: 'Service-dropdown',
+      iconClass: 'ti ti-sort-descending',
+      type: 'dropdown',
+      placeholder: 'Service dropdown',
+      isEdit: false,
+      important: '',
+      dropdown: [
+        {
+          itemName: 'Website Audit',
+          value: 'website audit'
+        },
+        {
+          itemName: 'Website Audit',
+          value: 'website audit'
+        }
+      ],
+      iTagClass: 'ti ti-cursor-text',
+      helptext: '',
+      originalValue: 'Service dropdown',
+      isNew: true
+    },
   ];
 
   signaturePadOptions: Object = {
@@ -140,12 +176,14 @@ export class AppComponent {
       };
       this.addFieldsArr.push(newItem);
     } else if (item.originalValue === 'Spreadsheet Input') {
-      const newPlaceholders = [...item.placeholders];
-      const newItem = {
-        ...item,
-        placeholders: newPlaceholders
-      };
-      this.addFieldsArr.push(newItem);
+    const newIndex = this.addFieldsArr.length;
+    const newPlaceholders = [...item.placeholders];
+    const newItem = {
+      ...item,
+      index: newIndex,
+      placeholders: newPlaceholders
+    };
+    this.addFieldsArr.push(newItem);
     } else if (item.originalValue === 'Email') {
       const emailFieldExists = this.addFieldsArr.some(field => field.originalValue === 'Email');
       if (!emailFieldExists) {
